@@ -33,6 +33,8 @@ ifeq (${OS},Darwin)
 shared_lib = lib${1}.dylib
 else ifeq (${OS},Linux)
 shared_lib = lib${1}.so
+else ifeq (${OS},OpenBSD)
+shared_lib = lib${1}.so
 else
 $(error Unknown platform, please define how shared libraries are named)
 endif
@@ -59,6 +61,8 @@ include ${dir}/rules.mk
 dir := objects
 include ${dir}/rules.mk
 dir := string_return
+include ${dir}/rules.mk
+dir := vector_return
 include ${dir}/rules.mk
 
 all: c ruby python haskell nodejs csharp
